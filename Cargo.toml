@@ -14,3 +14,4 @@ tokio = { version = "1", features = ["full"] }
 tower = { version = "0.4", features = ["util"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+sqlx = {version = "0.7.3", features = ["runtime-tokio", "tls-native-tls", "postgres", "macros", "uuid"]}

@@ -15,6 +15,8 @@
     <textarea id="chat" style="display:block; width:600px; height:400px; box-sizing: border-box" cols="30"
         rows="10" readonly></textarea>
     <input id="input" style="display:block; width:600px; box-sizing: border-box" type="text" placeholder="chat">
+    <textarea id="people" style="display:block; width:100px; height:100px; box-sizing: border-box" cols="15"
+        rows="5" readonly></textarea>
 
     <script>
         const username = document.querySelector("#username");
@@ -22,6 +24,7 @@
         const join_btn = document.querySelector("#join-chat");
         const textarea = document.querySelector("#chat");
         const input = document.querySelector("#input");
+        const people = document.querySelector("#people");
 
         join_btn.addEventListener("click", function (e) {
             this.disabled = true;
@@ -43,6 +46,13 @@
             websocket.onmessage = function (e) {
                 console.log("received message: " + e.data);
                 textarea.value += e.data + "\r\n";
+                let name = e.data.split(':');
+                console.log(name);
+                console.log("hello ",username.value);
+                if (!name[0].startsWith("--------------") && !e.data.includes(":")){
+                    people.value += e.data + "\r\n";
+                    people.value += "-----------`"
+                }
             }
 
             input.onkeydown = function (e) {
