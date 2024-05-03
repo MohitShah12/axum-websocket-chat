@@ -21,7 +21,7 @@ pub async fn insert_user(pool:&PgPool, username:&str, channel:&str) -> Result<()
 }
 
 pub async fn insert_msg(pool:&PgPool,message:String,channel:&String) -> Result<(),sqlx::Error>{
-    println!("Inside query:{}",message);
+    println!("Inside query:{}",message); //this runs mulltiple times for each user
     sqlx::query("INSERT INTO messages (chat, channel) VALUES ($1,$2)")
         .bind(message)
         .bind(channel)
